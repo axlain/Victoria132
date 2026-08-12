@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victoria 132 — Vista previa de diseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAF6EF;
+    --bg-alt: #F1E8DA;
+    --card: #FFFFFF;
+    --ink: #2A2420;
+    --ink-soft: #6E6459;
+    --ink-faint: #9A907F;
+    --primary: #007FBF;
+    --primary-dark: #056089;
+    --teal: #1FA79A;
+    --mint: #A2D8CE;
+    --terracota: #B15A34;
+    --terracota-soft: #EADACB;
+    --border: #E7DDCC;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 14px 34px rgba(42,36,32,.12);
+    --shadow-sm: 0 4px 14px rgba(42,36,32,.08);
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,Segoe UI,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces',Georgia,serif;
+    font-weight:600;
+    margin:0 0 .5em;
+    line-height:1.15;
+    letter-spacing:-.01em;
+  }
+  p{margin:0 0 1em;}
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:.72rem;
+    font-weight:700;
+    color:var(--teal);
+    margin-bottom:.6em;
+    display:inline-block;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 26px;border-radius:999px;
+    font-weight:600;font-size:.95rem;
+    border:1px solid transparent;cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--teal);color:#fff;box-shadow:0 10px 24px rgba(31,167,154,.35);}
+  .btn-primary:hover{background:#188c81;}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.5);backdrop-filter:blur(4px);}
+  .btn-ghost:hover{background:rgba(255,255,255,.22);}
+  .btn-dark{background:var(--ink);color:#fff;}
+  .btn-dark:hover{background:#000;}
+
+  /* ---------- preview banner ---------- */
+  .preview-banner{
+    background:var(--ink);color:#f4ede1;
+    font-size:.82rem; text-align:center;
+    padding:10px 16px;
+    position:relative;
+  }
+  .preview-banner b{color:var(--mint);}
+  .preview-banner button{
+    position:absolute;right:14px;top:50%;transform:translateY(-50%);
+    background:none;border:none;color:#c9c0b1;font-size:1.1rem;cursor:pointer;line-height:1;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(250,246,239,.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand img{height:34px;width:auto;}
+  .navlinks{display:flex;gap:30px;align-items:center;}
+  .navlinks a{font-size:.92rem;font-weight:600;color:var(--ink-soft);}
+  .navlinks a:hover{color:var(--primary);}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
+  .nav-phone{font-size:.85rem;font-weight:600;color:var(--ink-soft);white-space:nowrap;}
+  .burger{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--ink);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;min-height:88vh;display:flex;align-items:flex-end;
+    background-size:cover;background-position:center;
+    color:#fff;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(20,16,12,.15) 0%, rgba(20,16,12,.35) 55%, rgba(15,12,9,.88) 100%);
+  }
+  .hero-inner{position:relative;z-index:2;width:100%;padding-bottom:56px;}
+  .hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px;}
+  .badge{
+    background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);
+    padding:7px 14px;border-radius:999px;font-size:.78rem;font-weight:600;
+    backdrop-filter:blur(6px);
+  }
+  .hero h1{font-size:clamp(2.1rem,5vw,3.6rem);max-width:820px;color:#fff;}
+  .hero p.lead{font-size:1.15rem;max-width:560px;color:rgba(255,255,255,.88);}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px;}
+
+  /* ---------- sections generic ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:640px;margin-bottom:48px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem);}
+  .section-head p{color:var(--ink-soft);font-size:1.05rem;}
+
+  /* ---------- value strip ---------- */
+  .value-strip{background:var(--card);}
+  .value-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+  .value-item{
+    text-align:center;padding:22px 10px;border-radius:var(--radius-sm);
+  }
+  .value-item svg{width:30px;height:30px;color:var(--primary);margin-bottom:10px;}
+  .value-item h4{font-size:.86rem;font-family:'Inter';font-weight:700;margin:0 0 4px;}
+  .value-item span{font-size:.76rem;color:var(--ink-faint);}
+
+  /* ---------- rooms ---------- */
+  .rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .room-card{
+    background:var(--card);border-radius:var(--radius);overflow:hidden;
+    box-shadow:var(--shadow-sm);border:1px solid var(--border);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .room-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .room-photo{height:220px;overflow:hidden;position:relative;}
+  .room-photo img{width:100%;height:100%;object-fit:cover;}
+  .room-tag{
+    position:absolute;top:14px;left:14px;background:rgba(255,255,255,.92);
+    padding:5px 12px;border-radius:999px;font-size:.75rem;font-weight:700;color:var(--ink);
+  }
+  .room-body{padding:20px 22px 22px;}
+  .room-body h3{font-size:1.15rem;margin-bottom:4px;}
+  .room-meta{color:var(--ink-soft);font-size:.86rem;margin-bottom:14px;}
+  .room-body .btn{width:100%;justify-content:center;padding:11px;font-size:.88rem;}
+  .room-card.placeholder{
+    background:repeating-linear-gradient(135deg, #F3ECDF, #F3ECDF 12px, #EDE3D2 12px, #EDE3D2 24px);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:38px 24px;min-height:346px;border:1.5px dashed var(--ink-faint);
+  }
+  .room-card.placeholder svg{width:34px;height:34px;color:var(--ink-faint);margin-bottom:14px;}
+  .room-card.placeholder h3{color:var(--ink-soft);font-size:1rem;margin-bottom:8px;}
+  .room-card.placeholder p{color:var(--ink-faint);font-size:.82rem;margin:0;}
+  .rooms-note{
+    margin-top:28px;font-size:.86rem;color:var(--ink-faint);
+    background:var(--terracota-soft);border-radius:var(--radius-sm);padding:14px 18px;
+  }
+
+  /* ---------- gallery ---------- */
+  .gallery-section{background:var(--bg-alt);}
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:14px;
+  }
+  .gallery-grid figure{margin:0;border-radius:var(--radius-sm);overflow:hidden;cursor:pointer;position:relative;}
+  .gallery-grid img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease;}
+  .gallery-grid figure:hover img{transform:scale(1.06);}
+  .gallery-grid figure.tall{grid-row:span 2;}
+  .gallery-grid figcaption{
+    position:absolute;left:0;right:0;bottom:0;padding:10px 12px 8px;
+    background:linear-gradient(0deg,rgba(0,0,0,.65),transparent);
+    color:#fff;font-size:.75rem;font-weight:600;
+  }
+
+  /* ---------- compare ---------- */
+  .compare-section{background:var(--ink);color:#f2ece1;}
+  .compare-section .section-head p{color:#c9c0b1;}
+  .compare-section .eyebrow{color:var(--mint);}
+  .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:stretch;}
+  .compare-card{border-radius:var(--radius);padding:32px 30px;}
+  .compare-before{background:#3a332c;border:1px solid #4c443a;}
+  .compare-after{background:linear-gradient(160deg,var(--teal),var(--primary));}
+  .compare-card h3{font-size:1.05rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:18px;}
+  .compare-before h3{color:#e0b8a6;}
+  .compare-after h3{color:#fff;}
+  .compare-list{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .compare-list li{display:flex;gap:10px;font-size:.94rem;align-items:flex-start;}
+  .compare-list svg{width:18px;height:18px;flex-shrink:0;margin-top:2px;}
+  .compare-before svg{color:#e0836a;}
+  .compare-after svg{color:#fff;}
+  .price-tag{font-family:'Fraunces';font-size:2.1rem;font-weight:600;margin:0;}
+  .price-sub{font-size:.82rem;opacity:.85;}
+  .compare-before .price-tag{color:#f0d9cd;}
+  .compare-after .price-tag{color:#fff;}
+  .savings-strip{
+    margin-top:28px;text-align:center;background:rgba(162,216,206,.12);
+    border:1px solid rgba(162,216,206,.35);border-radius:var(--radius-sm);
+    padding:18px 20px;font-size:1rem;
+  }
+  .savings-strip b{color:var(--mint);font-size:1.2rem;}
+
+  /* ---------- location ---------- */
+  .location-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;}
+  .poi-list{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .poi-list li{display:flex;gap:12px;align-items:flex-start;font-size:.95rem;}
+  .poi-list svg{width:20px;height:20px;color:var(--terracota);flex-shrink:0;margin-top:2px;}
+  .map-frame{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);}
+  .map-frame iframe{width:100%;height:420px;border:0;display:block;}
+
+  /* ---------- testimonials ---------- */
+  .testi-section{background:var(--bg-alt);}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .testi-card{background:var(--card);border-radius:var(--radius);padding:26px 24px;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+  .stars{color:#E0A73A;font-size:.95rem;margin-bottom:12px;letter-spacing:2px;}
+  .testi-card p{font-size:.92rem;color:var(--ink-soft);font-style:italic;}
+  .testi-name{font-weight:700;font-size:.88rem;}
+  .testi-source{font-size:.78rem;color:var(--ink-faint);}
+  .testi-note{
+    text-align:center;margin-top:26px;font-size:.85rem;color:var(--ink-faint);
+  }
+
+  /* ---------- final cta ---------- */
+  .final-cta{
+    background:linear-gradient(135deg,var(--primary),var(--teal));
+    color:#fff;text-align:center;border-radius:calc(var(--radius) + 8px);
+    padding:64px 40px;margin:0 24px;
+  }
+  .final-cta h2{color:#fff;font-size:clamp(1.6rem,3.4vw,2.4rem);}
+  .final-cta p{color:rgba(255,255,255,.9);max-width:520px;margin-left:auto;margin-right:auto;}
+  .final-cta .hero-ctas{justify-content:center;}
+  .final-cta .btn-primary{background:#fff;color:var(--primary-dark);box-shadow:0 10px 24px rgba(0,0,0,.2);}
+  .final-cta .btn-primary:hover{background:#f2f2f2;}
+
+  /* ---------- footer ---------- */
+  footer{padding:56px 0 34px;}
+  .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:36px;margin-bottom:36px;}
+  .footer-grid h4{font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin-bottom:14px;}
+  .footer-grid p, .footer-grid a{font-size:.9rem;color:var(--ink-soft);display:block;margin-bottom:8px;}
+  .footer-bottom{
+    border-top:1px solid var(--border);padding-top:22px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:.78rem;color:var(--ink-faint);
+  }
+
+  /* ---------- whatsapp float ---------- */
+  .wa-float{
+    position:fixed;bottom:22px;right:22px;z-index:60;
+    width:58px;height:58px;border-radius:50%;background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 26px rgba(37,211,102,.5);
+    animation:pulse 2.4s infinite;
+  }
+  .wa-float svg{width:30px;height:30px;color:#fff;}
+  @keyframes pulse{
+    0%{box-shadow:0 10px 26px rgba(37,211,102,.5);}
+    50%{box-shadow:0 10px 26px rgba(37,211,102,.5),0 0 0 10px rgba(37,211,102,.15);}
+    100%{box-shadow:0 10px 26px rgba(37,211,102,.5);}
+  }
+
+  /* ---------- lightbox ---------- */
+  .lightbox{
+    position:fixed;inset:0;background:rgba(15,12,9,.92);z-index:100;
+    display:none;align-items:center;justify-content:center;padding:30px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:90vw;max-height:82vh;border-radius:8px;}
+  .lightbox-close{
+    position:absolute;top:24px;right:30px;background:none;border:none;
+    color:#fff;font-size:2rem;cursor:pointer;line-height:1;
+  }
+  .lightbox-cap{position:absolute;bottom:28px;left:0;right:0;text-align:center;color:#e9e2d4;font-size:.9rem;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .value-grid{grid-template-columns:repeat(3,1fr);}
+    .rooms-grid{grid-template-columns:repeat(2,1fr);}
+    .gallery-grid{grid-template-columns:repeat(3,1fr);}
+    .compare-grid{grid-template-columns:1fr;}
+    .location-grid{grid-template-columns:1fr;}
+    .testi-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:700px){
+    .navlinks{display:none;}
+    .burger{display:block;}
+    .nav-phone{display:none;}
+    .value-grid{grid-template-columns:repeat(2,1fr);}
+    .rooms-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px;}
+    .footer-grid{grid-template-columns:1fr;}
+    section{padding:60px 0;}
+    .final-cta{padding:46px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="preview-banner" id="previewBanner">
+  🎨 <b>Vista previa de diseño</b> — Victoria 132. Este es un mockup para mostrar cómo puede quedar el sitio nuevo. Fotos reales, contenido/precios de ejemplo pendientes de confirmar contigo.
+  <button onclick="document.getElementById('previewBanner').style.display='none'">✕</button>
+</div>
+
+<header>
+  <div class="nav wrap">
+    <div class="brand">
+      <img src="img/victoria_logo.webp" alt="Victoria 132">
+    </div>
+    <nav class="navlinks">
+      <a href="#habitaciones">Habitaciones</a>
+      <a href="#espacios">Espacios</a>
+      <a href="#comparativa">Por qué cambiar</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="nav-cta">
+      <span class="nav-phone">📞 (55) 1228 5766</span>
+      <a class="btn btn-dark" style="padding:10px 20px;font-size:.85rem;" href="https://wa.me/525512285766?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20Victoria%20132%20y%20quiero%20consultar%20disponibilidad." target="_blank">Reservar</a>
+      <button class="burger">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" style="background-image:url('img/VICTORIA132-+-+33.webp');">
+  <div class="hero-inner wrap">
+    <div class="hero-badges">
+      <span class="badge">📍 A 1 cuadra del Parque Los Tecajetes</span>
+      <span class="badge">📶 Wifi 200 Mbps incluido</span>
+      <span class="badge">🛡️ Seguridad 24/7</span>
+    </div>
+    <h1>Tu descanso en el corazón de Xalapa</h1>
+    <p class="lead">Habitaciones equipadas a unos pasos de la Catedral, el Parque Juárez y el Palacio de Gobierno. Consulta disponibilidad al instante, sin llamadas ni esperas.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://wa.me/525512285766?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20Victoria%20132." target="_blank">Consultar disponibilidad →</a>
+      <a class="btn btn-ghost" href="#habitaciones">Ver habitaciones</a>
+    </div>
+  </div>
+</section>
+
+<section class="value-strip">
+  <div class="wrap">
+    <div class="value-grid">
+      <div class="value-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 8.5a15 15 0 0 1 20 0M5.5 12a10 10 0 0 1 13 0M9 15.5a5 5 0 0 1 6 0"/><circle cx="12" cy="19" r="1"/></svg>
+        <h4>Wifi 200 Mbps</h4>
+        <span>En todas las áreas, sin costo extra</span>
+      </div>
+      <div class="value-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="2.5" width="16" height="19" rx="2"/><circle cx="12" cy="13" r="4.2"/><circle cx="12" cy="13" r="1.4"/><circle cx="7" cy="5.5" r=".6" fill="currentColor" stroke="none"/></svg>
+        <h4>Lavandería</h4>
+        <span>Autoservicio, se cobra por kilo</span>
+      </div>
+      <div class="value-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 16V7.5h3.4a2.6 2.6 0 1 1 0 5.2H9"/></svg>
+        <h4>Estacionamiento</h4>
+        <span>Cajones propios · pregunta disponibilidad</span>
+      </div>
+      <div class="value-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6l7-3z"/></svg>
+        <h4>Seguridad</h4>
+        <span>Para que solo te preocupes por descansar</span>
+      </div>
+      <div class="value-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 9h13v4a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M17 10h1.5a2.3 2.3 0 0 1 0 4.6H17"/><path d="M8 3v2M11 3v2"/></svg>
+        <h4>Café-Land Victoria</h4>
+        <span>Cafetería en planta baja del edificio</span>
+      </div>
+      <div class="value-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="2" width="14" height="20" rx="2.5"/><path d="M9 18h6"/></svg>
+        <h4>Mobile-First</h4>
+        <span>Reserva desde tu celular en segundos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="habitaciones">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Habitaciones</span>
+      <h2>Cada habitación, a un clic de reservarse</h2>
+      <p>Así se vería la ficha de cada habitación — con fotos, capacidad y botón directo de contacto. En la versión final, tú mismo subes fotos y precios desde tu panel, sin depender de nadie.</p>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <div class="room-photo">
+          <img src="img/cuarto3.webp" alt="Habitación 102">
+          <span class="room-tag">Habitación 102</span>
+        </div>
+        <div class="room-body">
+          <h3>Habitación 102</h3>
+          <div class="room-meta">Cama matrimonial · Closet · TV · Cocineta</div>
+          <a class="btn btn-primary" href="https://wa.me/525512285766?text=Hola%2C%20quiero%20consultar%20disponibilidad%20de%20la%20Habitaci%C3%B3n%20102." target="_blank">Consultar disponibilidad</a>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-photo">
+          <img src="img/cuartopequeño.webp" alt="Habitación 107">
+          <span class="room-tag">Habitación 107</span>
+        </div>
+        <div class="room-body">
+          <h3>Habitación 107</h3>
+          <div class="room-meta">Cama individual · TV · Banca de estar</div>
+          <a class="btn btn-primary" href="https://wa.me/525512285766?text=Hola%2C%20quiero%20consultar%20disponibilidad%20de%20la%20Habitaci%C3%B3n%20107." target="_blank">Consultar disponibilidad</a>
+        </div>
+      </div>
+      <div class="room-card">
+        <div class="room-photo">
+          <img src="img/panoramica1.webp" alt="Habitación 115">
+          <span class="room-tag">Habitación 115</span>
+        </div>
+        <div class="room-body">
+          <h3>Habitación 115</h3>
+          <div class="room-meta">Cama matrimonial · Cocineta equipada</div>
+          <a class="btn btn-primary" href="https://wa.me/525512285766?text=Hola%2C%20quiero%20consultar%20disponibilidad%20de%20la%20Habitaci%C3%B3n%20115." target="_blank">Consultar disponibilidad</a>
+        </div>
+      </div>
+      <div class="room-card placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l4.5-4.5a2 2 0 0 1 2.8 0L15 15M14 14l1.7-1.7a2 2 0 0 1 2.8 0L21 15"/><circle cx="8" cy="9" r="1.2"/></svg>
+          <h3>Habitación 117</h3>
+          <p>Así se ve una ficha vacía: tú subes la foto y el precio desde tu panel en segundos.</p>
+      </div>
+      <div class="room-card placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 15l4.5-4.5a2 2 0 0 1 2.8 0L15 15M14 14l1.7-1.7a2 2 0 0 1 2.8 0L21 15"/><circle cx="8" cy="9" r="1.2"/></svg>
+          <h3>Habitación 118</h3>
+          <p>Sin depender de agencias externas ni de código. Solo entrar y actualizar.</p>
+      </div>
+    </div>
+    <p class="rooms-note">* Fotos de muestra tomadas de tu galería general — para la versión final necesitamos una carpeta de fotos por cada una de las 5 habitaciones (102, 107, 115, 117, 118), además de capacidad, distribución y precio de cada una.</p>
+  </div>
+</section>
+
+<section id="espacios" class="gallery-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Espacios y amenidades</span>
+      <h2>Un ambiente pensado para quedarte</h2>
+      <p>Terraza, mesa de billar, ping-pong, cocina compartida y patio colonial — todo lo que en el sitio actual está escondido en texto plano, aquí se muestra.</p>
+    </div>
+    <div class="gallery-grid">
+      <figure class="tall" onclick="openLightbox('img/area+comun.webp','Terraza y área común')">
+        <img src="img/area+comun.webp" alt="Terraza"><figcaption>Terraza / área común</figcaption>
+      </figure>
+      <figure onclick="openLightbox('img/billar2(amenidades).webp','Mesa de billar')">
+        <img src="img/billar2(amenidades).webp" alt="Billar"><figcaption>Mesa de billar</figcaption>
+      </figure>
+      <figure onclick="openLightbox('img/pingpong1.webp','Ping-pong')">
+        <img src="img/pingpong1.webp" alt="Ping pong"><figcaption>Ping-pong</figcaption>
+      </figure>
+      <figure class="tall" onclick="openLightbox('img/comedor2.webp','Terraza comedor')">
+        <img src="img/comedor2.webp" alt="Comedor terraza"><figcaption>Comedor en terraza</figcaption>
+      </figure>
+      <figure onclick="openLightbox('img/cocina2.webp','Cocina compartida')">
+        <img src="img/cocina2.webp" alt="Cocina"><figcaption>Cocina compartida</figcaption>
+      </figure>
+      <figure onclick="openLightbox('img/baño3-2.webp','Baño con talavera')">
+        <img src="img/baño3-2.webp" alt="Baño"><figcaption>Baños con talavera</figcaption>
+      </figure>
+      <figure onclick="openLightbox('img/VICTORIA132-+-+41.webp','Pasillo colonial')">
+        <img src="img/VICTORIA132-+-+41.webp" alt="Pasillo"><figcaption>Pasillos coloniales</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="comparativa" class="compare-section">
+  <div class="wrap">
+    <div class="section-head center" style="margin-left:auto;margin-right:auto;">
+      <span class="eyebrow">La razón del cambio</span>
+      <h2>Lo que pagas hoy vs. lo que podrías pagar</h2>
+      <p>Misma ubicación, mismo edificio — una plataforma que trabaja para ti en lugar de en tu contra.</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card compare-before">
+        <h3>Hoy · Squarespace</h3>
+        <p class="price-tag">$10,672 MXN</p>
+        <p class="price-sub">cada 2 años, solo por dominio + hosting (≈ $5,336 MXN/año)</p>
+        <ul class="compare-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>Disponibilidad estática: "Sin disponibilidad" en texto</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>Galería como lista plana de archivos</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>WhatsApp escondido en un bloque de texto</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>Cambiar una foto o precio depende de la agencia</li>
+        </ul>
+      </div>
+      <div class="compare-card compare-after">
+        <h3>Nuevo · WordPress propio</h3>
+        <p class="price-tag">$1,000–1,500 MXN</p>
+        <p class="price-sub">por año, hosting comercial optimizado para WordPress</p>
+        <ul class="compare-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Calendario de disponibilidad en tiempo real</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Galerías inmersivas tipo slider, mobile-first</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Botón flotante de WhatsApp, un clic 24/7</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>Tú subes fotos, precios y servicios, sin intermediarios</li>
+        </ul>
+      </div>
+    </div>
+    <div class="savings-strip">Ahorro estimado: <b>~70% del costo anual</b> — y control total sobre tu contenido.</div>
+  </div>
+</section>
+
+<section id="ubicacion">
+  <div class="wrap">
+    <div class="location-grid">
+      <div>
+        <span class="eyebrow">Ubicación</span>
+        <h2>En pleno centro histórico de Xalapa</h2>
+        <p style="color:var(--ink-soft)">Guadalupe Victoria 132, Centro, Xalapa Enríquez, Ver. C.P. 91000</p>
+        <ul class="poi-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.4 7-12a7 7 0 1 0-14 0c0 4.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>A una cuadra del Parque Ecológico Los Tecajetes</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.4 7-12a7 7 0 1 0-14 0c0 4.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>Cerca de la Catedral y el Parque Juárez</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.4 7-12a7 7 0 1 0-14 0c0 4.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>A pasos del Palacio de Gobierno</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.4 7-12a7 7 0 1 0-14 0c0 4.6 7 12 7 12z"/><circle cx="12" cy="9" r="2.4"/></svg>A 5 minutos del servicio urbano</li>
+        </ul>
+        <div class="hero-ctas" style="margin-top:26px;">
+          <a class="btn btn-dark" href="https://wa.me/525512285766" target="_blank">Escribir por WhatsApp</a>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps?q=Guadalupe+Victoria+132,+Centro,+Xalapa+Enr%C3%ADquez,+Ver.,+91000&output=embed" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testi-section">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">Confianza de huéspedes</span>
+      <h2>Lo que dicen quienes se han quedado</h2>
+      <p>Contenido de ejemplo — con acceso a tus reseñas de Google/Booking/Airbnb, aquí colocamos un carrusel con tus calificaciones reales.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Excelente ubicación, a un paso de todo el centro. El wifi funcionó perfecto para trabajar remoto."</p>
+        <div class="testi-name">Reseña de ejemplo</div>
+        <div class="testi-source">Formato tipo Google Reviews</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Muy tranquilo y seguro. La terraza con la mesa de billar fue un plus que no esperaba."</p>
+        <div class="testi-name">Reseña de ejemplo</div>
+        <div class="testi-source">Formato tipo Booking.com</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>"Habitación amplia y muy limpia. Volvería a hospedarme sin duda."</p>
+        <div class="testi-name">Reseña de ejemplo</div>
+        <div class="testi-source">Formato tipo Airbnb</div>
+      </div>
+    </div>
+    <p class="testi-note">¿En qué plataformas tienes calificaciones hoy? Con eso armamos este carrusel con testimonios reales.</p>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="wrap">
+    <div class="final-cta">
+      <h2>¿Listo para dejar de pagar de más por un folleto digital?</h2>
+      <p>Recupera el control de tu sitio, reduce tu costo anual y dale a tus huéspedes una forma real de reservar.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.me/525512285766?text=Hola%2C%20quiero%20platicar%20sobre%20el%20nuevo%20sitio%20de%20Victoria%20132." target="_blank">Hablar por WhatsApp</a>
+        <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.6)" href="tel:5512285766">Llamar ahora</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <img src="img/victoria_logo.webp" alt="Victoria 132" style="height:32px;margin-bottom:14px;">
+        <p>Guadalupe Victoria 132, Centro, Xalapa Enríquez, Ver., C.P. 91000</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <a href="tel:5512285766">(55) 1228 5766</a>
+        <a href="https://wa.me/525512285766" target="_blank">WhatsApp — 24 hrs</a>
+        <p>Oficina: L–V, 8:00–16:00 hrs</p>
+      </div>
+      <div>
+        <h4>Síguenos</h4>
+        <p style="color:var(--ink-faint)">Redes sociales — pendiente vincular</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© Victoria 132 — Xalapa, Ver.</span>
+      <span>Vista previa de diseño · no es el sitio final</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/525512285766?text=Hola%2C%20quiero%20consultar%20disponibilidad." target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1s-.5-.1-.7.1-.7 1-.9 1.2-.4.2-.7.1a8.3 8.3 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.4-.5.3-.4a.5.5 0 0 0 0-.5c-.1-.1-.7-1.6-.9-2.2s-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 6 6 0 0 0 1.3 3.1c.1.2 2.2 3.4 5.4 4.7a18 18 0 0 0 1.8.7 4.3 4.3 0 0 0 2 .1 3.2 3.2 0 0 0 2.1-1.5 2.6 2.6 0 0 0 .2-1.5c-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+</a>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-cap" id="lightboxCap"></div>
+</div>
+
+<script>
+  function openLightbox(src, cap){
+    document.getElementById('lightboxImg').src = src;
+    document.getElementById('lightboxCap').textContent = cap || '';
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.getElementById('lightbox').addEventListener('click', function(e){
+    if(e.target === this) closeLightbox();
+  });
+  document.querySelector('.burger').addEventListener('click', function(){
+    var nav = document.querySelector('.navlinks');
+    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+    nav.style.cssText += 'position:absolute;top:100%;left:0;right:0;background:var(--bg);flex-direction:column;padding:20px 24px;gap:18px;border-bottom:1px solid var(--border);';
+  });
+</script>
+
+</body>
+</html>

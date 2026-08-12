@@ -1,0 +1,37 @@
+# Claude Code
+.claude/
+
+# WordPress core (not versioned — installed fresh via wp-cli/zip when needed)
+/wp-admin/
+/wp-includes/
+/wp-*.php
+!/wp-config-sample.php
+/xmlrpc.php
+/index.php
+/license.txt
+/readme.html
+/wp-content/index.php
+
+# Config & secrets
+wp-config.php
+.env
+
+# Uploads / user-generated media (too heavy for git)
+/wp-content/uploads/
+
+# Third-party plugins & themes (installed via wp-admin, not hand-written)
+/wp-content/plugins/*
+!/wp-content/plugins/.gitkeep
+/wp-content/themes/twenty*/
+
+# Caches, backups, upgrade artifacts
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/backup*/
+*.sql
+*.log
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+node_modules/
